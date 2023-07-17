@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckUniqeChar</title>
+    <style>
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #newCheck {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Check First Unique Char in Text</h1>
+    <textarea id="text" cols="50" rows="10" placeholder="Type or paste text here"></textarea>
+    <h3 id="result"></h3>  
+    <button id="checkText">Check text</button>
+    <button id="newCheck">Check an other text</button>
+    
+<script>
+    let arrayAfterCheck = [];
+
+function checkUniqeChar(item) {
+    let i = 0;
+    do {
+        if(item.includes(item[i], (1+i))){
+        i++;
+        } else {
+        arrayAfterCheck.push(item[i]);
+        break;
+        }
+    } while(i < item.length)
+    return arrayAfterCheck;
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    let result = document.querySelector('#result');
+
+    document.querySelector('#checkText').addEventListener('click', function() {
+        let text = document.querySelector('#text').value;
+        let array = text.split(' ');
+        array.forEach(element => checkUniqeChar(element));
+        checkUniqeChar(arrayAfterCheck);
+        let answer = arrayAfterCheck[arrayAfterCheck.length - 1];
+        result.innerHTML = `Result is: ${answer}`;
+        
+    })
+
+    document.querySelector('#newCheck').addEventListener('click', function() {
+        result.innerHTML = '';
+        document.querySelector('#text').value = '';
+        arrayAfterCheck = [];
+    })
+})
+</script>
+</body>
+</html>
