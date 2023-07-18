@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arrayAfterCheck = []; // empty array for result
+        // declarate function for checking first unique char in string:
+        function checkUniqeChar(item) {
+            let i = 0;
+            do {
+                if(item.includes(item[i], (1+i))){
+                i++;
+                } else {
+                arrayAfterCheck.push(item[i]);
+                break;
+                }
+            } while(i < item.length)
+            return arrayAfterCheck;
+        }
+        
+        let text = prompt('Type or paste text here'); // get text
+        let array = text ? text.split(' ') : []; // split text into words
+        
+        array.forEach(element => checkUniqeChar(element)); // find first unique char in each word
+        
+        checkUniqeChar(arrayAfterCheck); //find first unique char in word's unique chars
+        //result is the last element in arrayAfterCheck, show it:
+        alert(arrayAfterCheck[arrayAfterCheck.length - 1]);  
+        </script>
+</body>
+</html>
